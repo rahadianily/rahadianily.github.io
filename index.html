@@ -153,7 +153,7 @@
         </div>
 
         <div class="bio-quote">
-          <p>"Kerenn gaa? :v."</p>
+          <p>"We suffer more often in imagination than in reality." Seneca</p>
         </div>
       </div>
     </div>
@@ -361,6 +361,16 @@
     }
 
     loop();
+
+    const quotes = [
+      "Hambatan adalah jalan. - Marcus Aurelius",
+      "Kendalikan apa yang bisa kamu kendalikan. - Epictetus",
+      "Kita menderita lebih sering dalam imajinasi daripada dalam kenyataan. - Seneca"
+    ];
+
+    // Contoh cara pasang di elemen HTML tertentu
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.querySelector('.bio-quote p').innerText = randomQuote;
 
   </script>
 
