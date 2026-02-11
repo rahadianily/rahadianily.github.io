@@ -11,11 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -222,10 +225,26 @@
         </div>
 
         <div class="contact-form-container">
-          <form class="contact-form">
-            <input type="text" placeholder="Nama Kamu" required>
-            <input type="email" placeholder="Email Kamu" required>
-            <textarea placeholder="Pesan..." rows="5" required></textarea>
+          <form action="https://formspree.io/f/mqedelel" method="POST" class="contact-form">
+
+            <div class="input-group">
+              <label for="full-name">Nama Lengkap</label>
+              <input type="text" name="name" id="full-name" placeholder="Nama Kamu" required>
+            </div>
+
+            <div class="input-group">
+              <label for="email-address">Email</label>
+              <input type="email" name="_replyto" id="email-address" placeholder="Email Kamu" required>
+            </div>
+
+            <div class="input-group">
+              <label for="message">Pesan</label>
+              <textarea name="message" id="message" placeholder="Pesan..." rows="5" required></textarea>
+            </div>
+
+            <input type="hidden" name="_subject" value="Pesan Baru dari Portofolio Rahadian Ilyasa">
+            <input type="text" name="_gotcha" style="display:none">
+
             <button type="submit" class="cta-btn">Kirim Pesan</button>
           </form>
         </div>
@@ -347,6 +366,17 @@
       particles.push(new Particle(e.clientX, e.clientY));
     });
 
+    window.addEventListener('touchmove', (e) => {
+      // Mencegah scroll layar saat menggeser kursor (opsional)
+      // e.preventDefault(); 
+
+      if (e.touches.length > 0) {
+        for (let i = 0; i < e.touches.length; i++) {
+          particles.push(new Particle(e.touches[i].clientX, e.touches[i].clientY));
+        }
+      }
+    }, { passive: true });
+
     function loop() {
       context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -371,6 +401,59 @@
     // Contoh cara pasang di elemen HTML tertentu
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     document.querySelector('.bio-quote p').innerText = randomQuote;
+
+    // Alert sukses pesan
+    const contactForm = document.querySelector('.contact-form');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Mencegah pindah halaman
+
+      const formData = new FormData(contactForm);
+
+      // Tampilkan loading saat mengirim
+      Swal.fire({
+        title: 'Mengirim Pesan...',
+        text: 'Mohon tunggu sebentar wakk...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Jika berhasil
+          Swal.fire({
+            icon: 'success',
+            title: 'Pesan Terkirim!',
+            text: 'Terima kasih, Rahadian akan segera membalas pesanmu.',
+            background: '#0f1629',
+            color: '#e0e0ff',
+            confirmButtonColor: '#00d4ff'
+          });
+          contactForm.reset(); // Kosongkan form kembali
+        } else {
+          throw new Error();
+        }
+      } catch (error) {
+        // Jika gagal
+        Swal.fire({
+          icon: 'error',
+          title: 'Waduh Gagal!',
+          text: 'Sepertinya ada masalah koneksi. Coba lagi nanti ya.',
+          background: '#0f1629',
+          color: '#e0e0ff'
+        });
+      }
+    });
 
   </script>
 
