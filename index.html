@@ -366,17 +366,6 @@
       particles.push(new Particle(e.clientX, e.clientY));
     });
 
-    window.addEventListener('touchmove', (e) => {
-      // Mencegah scroll layar saat menggeser kursor (opsional)
-      // e.preventDefault(); 
-
-      if (e.touches.length > 0) {
-        for (let i = 0; i < e.touches.length; i++) {
-          particles.push(new Particle(e.touches[i].clientX, e.touches[i].clientY));
-        }
-      }
-    }, { passive: true });
-
     function loop() {
       context.clearRect(0, 0, canvas.width, canvas.height);
 
