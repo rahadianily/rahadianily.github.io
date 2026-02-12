@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Akuntansi Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Container untuk Scroll Snap */
+        .snap-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Setiap Section */
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .bg-gradient-poster {
+            background: radial-gradient(circle at top, #7c83fd 0%, #4b0082 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 15px rgba(124, 131, 253, 0.6);
+        }
+
+        /* State Awal Animasi (Tersembunyi) */
+        .reveal {
+            opacity: 0;
+            filter: blur(5px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal-bottom {
+            transform: translateY(50px);
+        }
+
+        .reveal-left {
+            transform: translateX(-50px);
+        }
+
+        .reveal-right {
+            transform: translateX(50px);
+        }
+
+        /* State Akhir Animasi (Muncul) */
+        .reveal.active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate(0, 0);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-poster text-white antialiased">
+
+    <div class="snap-container">
+
+        <section id="cover">
+            <header class="text-center space-y-4 reveal reveal-bottom">
+                <h1 class="text-6xl font-extrabold italic tracking-tight neon-text uppercase leading-none">Workshop</h1>
+                <div class="h-1 w-20 bg-blue-400 mx-auto rounded-full"></div>
+                <p class="text-xl font-medium opacity-90 px-2">
+                    Pengembangan dan Implementasi Sistem Akuntansi Terintegrasi di Era Digital
+                </p>
+            </header>
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50 text-sm">
+                Scroll kebawah ↓
+            </div>
+        </section>
+
+        <section id="info">
+            <div class="glass-card p-8 text-center shadow-lg space-y-6 reveal reveal-left">
+                <div>
+                    <p class="text-blue-300 font-bold tracking-widest uppercase text-sm mb-2">Kapan & Dimana</p>
+                    <h2 class="text-3xl font-bold">4 - 5 Maret 2026</h2>
+                    <p class="text-lg opacity-70 italic text-white/80">Jam 09.00 - Selesai</p>
+                </div>
+                <hr class="border-white/10">
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-3xl">📍</span>
+                    <span class="font-semibold text-lg uppercase tracking-wider">Hall Universitas AKI</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="materi">
+            <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 reveal reveal-bottom">
+                <span class="w-2 h-8 bg-blue-400 rounded-full"></span> Materi Workshop
+            </h3>
+            <div class="space-y-4">
+                <div class="glass-card p-6 border-l-4 border-blue-400 reveal reveal-right" style="transition-delay: 200ms;">
+                    <p class="font-bold text-blue-300 mb-1 text-xs uppercase tracking-widest">Hari Pertama</p>
+                    <p class="text-lg font-semibold text-white/90">Sistem Akuntansi Usaha Jasa</p>
+                </div>
+                <div class="glass-card p-6 border-l-4 border-purple-400 reveal reveal-right" style="transition-delay: 400ms;">
+                    <p class="font-bold text-blue-300 mb-1 text-xs uppercase tracking-widest">Hari Kedua</p>
+                    <p class="text-lg font-semibold text-white/90">Sistem Akuntansi Usaha Dagang</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="manfaat">
+            <h3 class="text-2xl font-bold mb-6 reveal reveal-bottom">Kenapa Harus Ikut?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div class="glass-card p-6 flex items-start gap-4 reveal reveal-right" style="transition-delay: 200ms">
+                    <span class="text-2xl">📊</span>
+                    <div>
+                        <p class="font-bold text-white/90">Memahami Alur Usaha</p>
+                        <p class="text-sm opacity-60">Implementasi sistem yang tepat untuk efisiensi bisnis.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal reveal-right" style="transition-delay: 400ms">
+                    <span class="text-2xl">🛡️</span>
+                    <div>
+                        <p class="font-bold">Meningkatkan keamanan</p>
+                        <p class="text-sm opacity-60">Proteksi data keuangan di era digital.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal reveal-right" style="transition-delay: 600ms">
+                    <span class="text-2xl">💻</span>
+                    <div>
+                        <p class="font-bold">Simulasi Sistem Nyata</p>
+                        <p class="text-sm opacity-60">Praktik langsung dari input transaksi hingga laporan otomatis.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 flex items-start gap-4 reveal reveal-right" style="transition-delay: 800ms">
+                    <span class="text-2xl">📈</span>
+                    <div>
+                        <p class="font-bold">Analisis Dashboard</p>
+                        <p class="text-sm opacity-60">Memahami grafik dan laporan untuk pengambilan keputusan bisnis.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 flex items-start gap-4 reveal reveal-right" style="transition-delay: 1000ms">
+                    <span class="text-2xl">🎓</span>
+                    <div>
+                        <p class="font-bold">E-Sertifikat</p>
+                        <p class="text-sm opacity-60">Menambah nilai portofolio dan pengalaman profesional.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="glass-card p-8 bg-white/5 text-center reveal reveal-bottom">
+                <h3 class="text-2xl font-bold mb-2 uppercase tracking-widest neon-text">Contact Person</h3>
+                <p class="text-sm opacity-60 mb-8 italic">Klik nomor di bawah untuk menghubungi</p>
+
+                <div class="space-y-4 text-left">
+                    <a href="tel:089504466207" class="flex justify-between items-center bg-white/10 p-4 rounded-2xl active:bg-blue-500/30 transition-all border border-white/5 hover:border-blue-400/50">
+                        <div class="flex flex-col">
+                            <span class="text-xs opacity-50 uppercase font-bold tracking-tighter">Admin 1</span>
+                            <span class="font-semibold text-lg">Ester</span>
+                        </div>
+                        <span class="font-mono text-blue-300">0895-0446-6207</span>
+                    </a>
+
+                    <a href="tel:081573402687" class="flex justify-between items-center bg-white/10 p-4 rounded-2xl active:bg-blue-500/30 transition-all border border-white/5 hover:border-blue-400/50">
+                        <div class="flex flex-col">
+                            <span class="text-xs opacity-50 uppercase font-bold tracking-tighter">Admin 2</span>
+                            <span class="font-semibold text-lg">Suci</span>
+                        </div>
+                        <span class="font-mono text-blue-300">0815-7340-2687</span>
+                    </a>
+                </div>
+
+                <button class="mt-10 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-500/40 active:scale-95 transition-all uppercase tracking-[0.2em] text-sm">
+                    Daftar Sekarang
+                </button>
+            </div>
+        </section>
+
+    </div>
+    <script>
+        // Logic untuk mendeteksi scroll dan trigger animasi
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    // Hapus baris di bawah kalau mau animasi cuma sekali jalan (nggak bolak-balik)
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, {
+            threshold: 0.2
+        }); // Trigger jalan kalau 20% elemen sudah masuk layar
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+
+</html>
