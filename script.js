@@ -150,9 +150,9 @@ contactForm.addEventListener('submit', async (e) => {
     }
 });
 
-// Logic untuk Scroll Reveal
+// Logic untuk Scroll Reveal 
 const observerOptions = {
-    threshold: 0.15 // Section akan muncul jika 15% bagiannya sudah terlihat di layar
+    threshold: 0.1 // 10% elemen terlihat, efek langsung jalan
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -163,8 +163,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Mendaftarkan elemen yang ingin diberi efek transisi
-document.querySelectorAll('.about-section, .biodata-section, .project-section, .contact-section').forEach((section) => {
-    section.classList.add('reveal'); // Tambahkan class reveal secara otomatis lewat JS
-    observer.observe(section);
+// Daftarkan semua elemen yang memiliki class 'reveal'
+document.querySelectorAll('.reveal').forEach((el) => {
+    observer.observe(el);
 });

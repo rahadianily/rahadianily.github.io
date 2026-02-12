@@ -639,15 +639,51 @@ h1 {
   z-index: 9999;
 }
 
-/* Kondisi awal: Tersembunyi dan sedikit turun ke bawah */
+
+/* --- Variasi Efek Reveal --- */
+/* Efek Umum (Dasar) */
 .reveal {
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease-out;
+  transition: all 1s ease-out;
 }
 
-/* Kondisi saat sudah masuk area scroll: Muncul dan kembali ke posisi asli */
+/* 1. Muncul dari Bawah */
+.reveal-up {
+  transform: translateY(60px);
+}
+
+/* 2. Muncul dari Kiri */
+.reveal-left {
+  transform: translateX(-80px);
+}
+
+/* 3. Muncul dari Kanan */
+.reveal-right {
+  transform: translateX(80px);
+}
+
+/* Kondisi Aktif (Semua akan kembali ke posisi normal) */
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0, 0);
+}
+
+/* 4. Efek Zoom In (Membesar pelan-pelan) */
+.reveal-zoom {
+  transform: scale(0.8);
+}
+
+/* 5. Efek Zoom Out (Mengecil dari besar) */
+.reveal-zoom-out {
+  transform: scale(1.2);
+}
+
+/* 6. Efek Putar (Rotate) */
+.reveal-rotate {
+  transform: rotate(-5deg) translateY(30px);
+}
+
+/* 7. Efek Blur (Mulai dari kabur ke tajam) */
+.reveal-blur {
+  filter: blur(10px);
 }
